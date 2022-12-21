@@ -138,19 +138,7 @@ let resizeHandler = (function () {
         }
     }, 1));
 
-    $(window).on('mousedown', null, null, _.debounce((event) => {
-        if (resizeData.tracking) {
-            setInterval(function () {
-                const search = document.querySelector("input");
-                const aside = document.querySelector("aside");
 
-                let width = aside.offsetWidth - 100;
-                let text = width.toString();
-
-                search.style.width = text + "px";
-            }, 100);
-        }
-    }, 1));
 
     $(window).on('mouseup', null, null, (event) => {
         if (resizeData.tracking) {
