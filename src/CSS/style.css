@@ -36,10 +36,11 @@ html {
 
 .main-content {
     flex-grow: 1;
-    background-color: grey;
+    background-color: white;
 }
 
 .sidebar {
+    padding: 0px 18px !important;
     min-width: 220px;
     width: 230px;
     max-width: 440px;
@@ -48,8 +49,17 @@ html {
     display: flex;
     flex-direction: column;
     gap: 15px;
+background-color: #FAFAFA;
 
-
+}
+.resize-handle--x{
+    border-color: #FAFAFA !important;
+}
+.resize-handle--x:hover{
+    background-color: #EEEEEE;
+    border-color: #EEEEEE !important;
+    width: 5px;
+    
 }
 
 .sidebar * {
@@ -65,6 +75,10 @@ html {
 
 .sidebar.is-open {
     margin-left: 0em;
+}
+
+.top-sidebar{
+    padding-top: 30px;
 }
 .search svg{
     position: absolute;
@@ -109,6 +123,9 @@ input:focus{
 button:focus{
     outline: none;
 }
+.menu button:hover {
+    background-color: #E27065;
+}
 .menu{
 display: flex;
 align-content: center;
@@ -119,6 +136,7 @@ align-content: center;
     background:transparent;
     border: 0;
     color: white;
+    border-radius: 20%/20%;
 }
 .menu :nth-child(2){
     display: flex;
