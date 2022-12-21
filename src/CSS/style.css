@@ -1,0 +1,64 @@
+body,html{
+    height: 100%;
+}
+
+.top-bar{
+    background-color: rgb(221, 144, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 16px 0px 18px;
+}
+
+.left-control{
+    display: flex;
+    align-items: center;
+}
+.home{
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    color: white;
+
+}
+
+.app-holder {
+    display: flex;
+}
+
+.main-content{
+    flex-grow: 1;
+    background-color: grey;
+}
+
+.sidebar {
+    width: 220px ;
+    height: 100vh;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+
+}
+.sidebar *{
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.sidebar.is-closed {
+    margin-left: -100vw;
+}
+
+@media only screen and (max-width: 800px) {
+    .sidebar {
+        margin-left: -100vw;
+        width: 200px;
+    }
+    .sidebar.is-closed {
+        margin-left: 0vw;
+    } 
+}
