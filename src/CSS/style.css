@@ -83,24 +83,49 @@ background-color: #FAFAFA;
     flex-direction: column;
 }
 
-.inbox{
+.inbox,
+.today,
+.upcoming,
+.filters-labels{
     display: flex;
     padding: 5px;
     border-radius: 10px / 30px;
 }
-.inbox:hover{
+.inbox:hover,
+.today:hover,
+.upcoming:hover,
+.filters-labels:hover{
     background-color: #EEEEEE;
 }
 
-.inbox :nth-child(1){
-color:#246FE0 ;
-}
-.inbox :nth-child(2){
+.inbox :nth-child(2),
+.today :nth-child(2),
+.upcoming :nth-child(2),
+.filters-labels :nth-child(2){
     flex: 1;
     padding-left: 5px;
 }
-.inbox :nth-child(3){
+
+.inbox :nth-child(3),
+.today :nth-child(3),
+.upcoming :nth-child(3){
 padding-right: 5px;
+}
+
+.inbox :nth-child(1){
+    color:#246FE0 ;
+    }
+
+.today :nth-child(1){
+color:#058527 ;
+}
+
+.upcoming :nth-child(1){
+    color:#692FC2 ;
+    }
+
+.filters-labels :nth-child(1){
+    color:#EB8E15 ;
 }
 
 .search svg{
