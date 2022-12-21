@@ -179,6 +179,7 @@ span+span {
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
+    max-width: 440px;
 }
 
 .container>main {

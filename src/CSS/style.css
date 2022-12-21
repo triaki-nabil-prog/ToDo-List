@@ -31,7 +31,7 @@ body,html{
 }
 
 .sidebar {
-    width: 220px ;
+    min-width: 220px ;
     height: 100vh;
     transition: 0.2s;
     display: flex;
@@ -50,15 +50,15 @@ body,html{
 
 
 .sidebar.is-closed {
-    margin-left: -100vw;
+    margin-left: -100em;
 }
 
 @media only screen and (max-width: 800px) {
     .sidebar {
-        margin-left: -100vw;
+        margin-left: -100em;
         width: 200px;
     }
     .sidebar.is-closed {
-        margin-left: 0vw;
+        margin-left: 0em;
     } 
 }
