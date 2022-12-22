@@ -1,6 +1,11 @@
 body,
 html {
     height: 100%;
+    font-family: var(--font-family);
+}
+
+:root {
+    --font-family: -apple-system,system-ui,"Segoe UI",Roboto,Noto,Oxygen-Sans,Ubuntu,Cantrell,"Helvetica Neue",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 .top-bar {
@@ -28,104 +33,6 @@ html {
 
 .home:hover {
     background-color: #E27065;
-}
-
-.app-holder {
-    display: flex;
-}
-
-.main-content {
-    flex-grow: 1;
-    background-color: white;
-}
-
-.sidebar {
-    padding: 0px 18px !important;
-    min-width: 220px;
-    width: 230px;
-    max-width: 440px;
-    height: 100vh;
-    gap: 15px;
-    display: flex;
-    flex-direction: column;
-
-background-color: #FAFAFA;
-
-}
-.resize-handle--x{
-    border-color: #FAFAFA !important;
-}
-.resize-handle--x:hover{
-    background-color: #EEEEEE;
-    border-color: #EEEEEE !important;
-    width: 5px;
-    
-}
-
-.sidebar * {
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.sidebar.is-closed {
-    display: flex;
-}
-
-.sidebar.is-open {
-    display: none;
-}
-
-.top-sidebar{
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
-.inbox,
-.today,
-.upcoming,
-.filters-labels{
-    display: flex;
-    padding: 5px;
-    border-radius: 10px / 30px;
-}
-.inbox:hover,
-.today:hover,
-.upcoming:hover,
-.filters-labels:hover{
-    background-color: #EEEEEE;
-}
-
-.inbox :nth-child(2),
-.today :nth-child(2),
-.upcoming :nth-child(2),
-.filters-labels :nth-child(2){
-    flex: 1;
-    padding-left: 5px;
-}
-
-.inbox :nth-child(3),
-.today :nth-child(3),
-.upcoming :nth-child(3){
-padding-right: 5px;
-}
-
-.inbox :nth-child(1){
-    color:#246FE0 ;
-    }
-
-.today :nth-child(1){
-color:#058527 ;
-}
-
-.upcoming :nth-child(1){
-    color:#692FC2 ;
-    }
-
-.filters-labels :nth-child(1){
-    color:#EB8E15 ;
 }
 
 .search svg{
@@ -199,16 +106,184 @@ align-content: center;
     border-radius: 50%/50%;
 }
 
+.app-holder {
+    display: flex;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: white;
+}
+
+.sidebar {
+    padding: 0px 18px !important;
+    min-width: 220px;
+    width: 230px;
+    max-width: 440px;
+    height: 100vh;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+
+background-color: #FAFAFA;
+
+}
+
+.resize-handle--x:hover{
+    background-color: #EEEEEE;
+    border-color: #EEEEEE !important;
+    width: 5px;
+    
+}
+
+.sidebar * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar.is-closed {
+    display: none;  
+}
+
+.sidebar.is-open {
+    display: flex;
+}
+
+.top-sidebar{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inbox,
+.today,
+.upcoming,
+.filters-labels,
+.projects{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 10px / 30px;
+}
+.inbox:hover,
+.today:hover,
+.upcoming:hover,
+.filters-labels:hover,
+.projects:hover{
+    background-color: #EEEEEE;
+}
+
+.inbox :nth-child(2),
+.today :nth-child(2),
+.upcoming :nth-child(2),
+.filters-labels :nth-child(2){
+    flex: 1;
+    padding-left: 5px;
+}
+
+.inbox :nth-child(3),
+.today :nth-child(3),
+.upcoming :nth-child(3),
+.filters-labels :nth-child(3){
+padding-right: 5px;
+}
+
+.inbox :nth-child(1){
+    color:#246FE0 ;
+    }
+
+.today :nth-child(1){
+color:#058527 ;
+}
+
+.upcoming :nth-child(1){
+    color:#692FC2 ;
+    }
+
+.filters-labels :nth-child(1){
+    color:#EB8E15 ;
+}
+
+.projects{
+    color: #69696D;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.projects :nth-child(1){
+flex: 1;
+}
+
+.projects button{
+    color: #696969;
+    border: 0;
+    background: transparent;
+    border-radius: 20%/20%;
+
+}
+
+.projects button:active{
+background-color: #1a1a1a34;
+}
+
+.project-list{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: height .4s ease-in-out;
+}
+.project-list.list-closed{
+    overflow: hidden;
+    clear:both;
+    height:0px;
+}
+
+.modal {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;  
+}
+
+.project-add-modal {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    
+}
+
+
+
+
+
+
 
 
 @media only screen and (max-width: 800px) {
-
+    .resize-handle--x{
+        display:none;
+    }
+    .sidebar {
+        transition: 0.3s;
+    }
     .sidebar.is-closed {
-        display: block;
+        display: flex;
+        margin-left:0;
     }
 
     .sidebar.is-open {
-        display: none;
+        margin-left: -230px;
     }
     .search input{
         width: 20px;

@@ -141,6 +141,41 @@ span+span {
 }
 
 
+.menu-svg.list-closed{
+
+    animation: ease .7s rotate forwards;
+}
+
+.menu-svg.list-open{
+    animation: ease .7s rotate2 forwards;
+}
+
+@keyframes rotate {
+    0% {
+        top: 0;
+        transform: rotate(0);
+    }
+
+    100% {
+        top: 0;
+        transform: rotate(90deg);
+    }
+}
+@keyframes rotate2 {
+    0% {
+        top: 0;
+        transform: rotate(90deg);
+    }
+
+    100% {
+        top: 0;
+        transform: rotate(0deg);
+    }
+}
+
+
+
+
 @media only screen and (max-width: 800px) {
     .active span:nth-child(1) {
         animation: ease .7s top forwards;

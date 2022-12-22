@@ -39,9 +39,19 @@ let tasks = (function () {
 })();
 
 
-let hamburgerMenu = (function () {
+let displayControl = (function () {
     var btn = document.querySelector(".btn");
     var sidebar = document.querySelector('.sidebar');
+    var projectListbutton = document.querySelector('.project-list-menu');
+    var projectList = document.querySelector('.project-list');
+    var menusvg = document.querySelector('.menu-svg');
+
+    projectListbutton.addEventListener("click", function (event) {
+        projectList.classList.toggle('list-closed');
+        menusvg.classList.toggle('list-closed');
+        menusvg.classList.toggle('list-open');
+
+    });
 
     btn.addEventListener("click", function (event) {
         if (btn.className == "btn not-active") {
@@ -62,6 +72,23 @@ let hamburgerMenu = (function () {
 
     });
 
+    var modal = document.getElementById("myModal");
+    var modalbtn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("cancel-new")[0];
+
+    modalbtn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
 })();
 
@@ -151,4 +178,4 @@ let resizeHandler = (function () {
 })();
 
 
-export { hamburgerMenu, resizeHandler };
+export { displayControl, resizeHandler };
