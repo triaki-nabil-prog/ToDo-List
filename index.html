@@ -145,13 +145,49 @@
                             fill="currentColor"></path>
                     </svg>
                     <div>Filters & Labels</div>
-                    <div class="filters-labels">0</div>
+                    <div class="filters-labels-num">0</div>
                 </div>
             </div>
+
+            <div class="modal" id="myModal">
+                <form id="form" class="project-add-modal">
+                    <div>Add project</div>
+                    <label for="project-name">Name</label>
+                    <input type="text" class="project-name" required />
+                    <label for="project-color">Color</label>
+                    <input type="color" class="project-color"/>
+                    <label for="project-favs">Add to favorites</label>
+                    <input type="checkbox" class="project-favs"/>
+                    <button class="cancel-new" >Cancel</button>
+                    <button type="submit" class="add-new">Add</button>
+                </form>
+            </div>
+            
             <div class="bot-sidebar">
                 <div class="projects">
-                    Projectsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    <div>Projects</div>
+                    <button class="add-task" id="myBtn">
+                        <svg width="13" height="13" >
+                            <path
+                                d="M6 6V.5a.5.5 0 0 1 1 0V6h5.5a.5.5 0 1 1 0 1H7v5.5a.5.5 0 1 1-1 0V7H.5a.5.5 0 0 1 0-1H6z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <button class="project-list-menu">
+                        <svg width="16" height="16" viewBox="0 -1 16 16" class="menu-svg list-open" >
+                            <path
+                                d="M14 5.758L13.156 5 7.992 9.506l-.55-.48.002.002-4.588-4.003L2 5.77 7.992 11 14 5.758"
+                                fill="currentColor"></path>
+                        </svg>
+                    </button>
                 </div>
+
+                <ul class="project-list">
+                    <li>Personal</li>
+                    <li>Work</li>
+                    <li>Education</li>
+                </ul>
+
             </div>
 
 
