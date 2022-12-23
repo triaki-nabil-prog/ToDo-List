@@ -45,7 +45,7 @@ let displayControl = (function () {
     var projectListbutton = document.querySelector('.project-list-menu');
     var projectList = document.querySelector('.project-list');
     var menusvg = document.querySelector('.menu-svg');
-    var main=document.querySelector('.shade');
+    var shade=document.querySelector('.shade');
 
     projectListbutton.addEventListener("click", function (event) {
         projectList.classList.toggle('list-closed');
@@ -55,22 +55,20 @@ let displayControl = (function () {
     });
 
     btn.addEventListener("click", function (event) {
-        if (btn.className == "btn not-active") {
             btn.classList.toggle('active');
             btn.classList.toggle('not-active');
-
             sidebar.classList.toggle('is-closed');
             sidebar.classList.toggle('is-open');
-        }
+            shade.classList.toggle('is-closed');
+    });
 
-        else if (btn.className == "btn active") {
-            btn.classList.toggle('not-active');
-            btn.classList.toggle('active');
 
-            sidebar.classList.toggle('is-open');
-            sidebar.classList.toggle('is-closed');
-        }
-        main.classList.toggle('is-closed');
+    shade.addEventListener("click", function (event) {
+        btn.classList.toggle('active');
+        btn.classList.toggle('not-active');
+        sidebar.classList.toggle('is-closed');
+        sidebar.classList.toggle('is-open');
+        shade.classList.toggle('is-closed');
     });
 
     var modal = document.getElementById("myModal");
