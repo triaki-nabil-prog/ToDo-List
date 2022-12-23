@@ -1,20 +1,35 @@
 import _ from 'lodash';
+import { pubsub } from './Controller';
 
-
-function AddGlobalEventListener(type, selector, callback) {
-    document.addEventListener(type, (e) => {
-        if (e.target.matches(selector)) {
-            callback(e);
-        }
-    });
-}
+// projects user input getter from dom and publisher to the Modal 
 
 let projects = (function () {
+    let project = [];
+
+    //cache DOM
+const Name = document.querySelector(".project-name");
+const Color = document.querySelector(".project-color");
+const Favorite =document.querySelector("#checkbox");
+
+
+
+    //Bind events
+    AddGlobalEventListener("click", ".add-new", add);
+
+
+    function AddGlobalEventListener(type, selector, callback) {
+        document.addEventListener(type, (e) => {
+            if (e.target.matches(selector)) {
+                callback(e);
+            }
+        });
+    }
 
     function rendering() {
         //update the projects module view
     }
     function add() {
+        console.log("add new project");
         //add a new project
     }
     function remove() {
@@ -45,7 +60,7 @@ let displayControl = (function () {
     var projectListbutton = document.querySelector('.project-list-menu');
     var projectList = document.querySelector('.project-list');
     var menusvg = document.querySelector('.menu-svg');
-    var shade=document.querySelector('.shade');
+    var shade = document.querySelector('.shade');
 
     projectListbutton.addEventListener("click", function (event) {
         projectList.classList.toggle('list-closed');
@@ -55,11 +70,11 @@ let displayControl = (function () {
     });
 
     btn.addEventListener("click", function (event) {
-            btn.classList.toggle('active');
-            btn.classList.toggle('not-active');
-            sidebar.classList.toggle('is-closed');
-            sidebar.classList.toggle('is-open');
-            shade.classList.toggle('is-closed');
+        btn.classList.toggle('active');
+        btn.classList.toggle('not-active');
+        sidebar.classList.toggle('is-closed');
+        sidebar.classList.toggle('is-open');
+        shade.classList.toggle('is-closed');
     });
 
 
