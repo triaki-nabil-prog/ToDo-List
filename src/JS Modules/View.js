@@ -45,7 +45,7 @@ let displayControl = (function () {
     var projectListbutton = document.querySelector('.project-list-menu');
     var projectList = document.querySelector('.project-list');
     var menusvg = document.querySelector('.menu-svg');
-    var main=document.querySelector('.main-content');
+    var main=document.querySelector('.shade');
 
     projectListbutton.addEventListener("click", function (event) {
         projectList.classList.toggle('list-closed');
