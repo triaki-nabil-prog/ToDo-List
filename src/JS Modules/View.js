@@ -45,6 +45,7 @@ let displayControl = (function () {
     var projectListbutton = document.querySelector('.project-list-menu');
     var projectList = document.querySelector('.project-list');
     var menusvg = document.querySelector('.menu-svg');
+    var main=document.querySelector('.main-content');
 
     projectListbutton.addEventListener("click", function (event) {
         projectList.classList.toggle('list-closed');
@@ -69,7 +70,7 @@ let displayControl = (function () {
             sidebar.classList.toggle('is-open');
             sidebar.classList.toggle('is-closed');
         }
-
+        main.classList.toggle('is-closed');
     });
 
     var modal = document.getElementById("myModal");

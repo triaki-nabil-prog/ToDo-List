@@ -144,7 +144,7 @@ button:focus {
 
 .app-holder {
     display: flex;
-    margin-top: 43px;
+    padding-top: 43px;
 }
 
 .main-content {
@@ -157,12 +157,11 @@ button:focus {
     min-width: 220px;
     width: 230px;
     max-width: 440px;
-    height: 100vh;
     gap: 20px;
     display: flex;
     flex-direction: column;
     transition: all 0.2s ease-in-out;
-    background-color: #FAFAFA;
+    background-color: #e26f652d;
 
 }
 
@@ -395,8 +394,11 @@ button:focus {
 #upcoming-main,
 #filters-labels-main {
     padding: 0px 50px;
+    margin-left: 10px;
+    margin-right: 10px;
     flex: 1;
     border-radius: 15px;
+
 
 }
 
@@ -427,9 +429,18 @@ background-color: #EB8E1560;
     }
 
     .sidebar {
+        position: fixed;
         width: 230px !important;
         transition: 0.3s;
+        height: 100vh;
     }
+
+    .main-content.is-closed{
+        z-index: -1;
+    }
+.app-holder.container{
+    background-color: #34332d91;
+}
 
     .sidebar.is-closed {
         display: flex;
