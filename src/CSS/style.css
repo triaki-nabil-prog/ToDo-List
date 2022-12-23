@@ -161,7 +161,7 @@ button:focus {
     display: flex;
     flex-direction: column;
     transition: all 0.2s ease-in-out;
-    background-color: #e26f652d;
+    background-color: #FAE6E4;
 
 }
 
