@@ -172,8 +172,14 @@
                         <input type="text" class="project-name" required />
                         <label for="project-color">Color</label>
                         <input type="color" class="project-color" />
-                        <label for="project-favs">Add to favorites</label>
-                        <input type="checkbox" class="project-favs" />
+                        <label for="checkbox">Add to favorites</label>
+
+                        <div class="checkbox-container">
+                            <label class="switch" for="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
 
                         <div class="modal-buttons">
                             <button type="button" class="cancel-new">Cancel</button>
@@ -216,27 +222,27 @@
         <div class="resize-handle--x" data-target="aside"></div>
 
 
-        
+
         <main class="main-content">
             <div class="shade"></div>
-                <div id="inbox-section">
-                    <h1>All Tasks</h1>
-                    <div id="inbox-main">tasks wil go here</div>
-                </div>
+            <div id="inbox-section">
+                <h1>All Tasks</h1>
+                <div id="inbox-main">tasks wil go here</div>
+            </div>
 
-                <div id="today-section">
-                    <h1>today</h1>
-                    <div id="today-main">tasks wil go here</div>
-                </div>
+            <div id="today-section">
+                <h1>today</h1>
+                <div id="today-main">tasks wil go here</div>
+            </div>
 
-                <div id="upcoming-section">
-                    <h1>upcoming</h1>
-                    <div id="upcoming-main">tasks wil go here</div>
-                </div>
+            <div id="upcoming-section">
+                <h1>upcoming</h1>
+                <div id="upcoming-main">tasks wil go here</div>
+            </div>
 
-                <div id="filters-labels-section">
-                    <h1>filters and labels</h1>
-                    <div id="filters-labels-main">tasks wil go here</div>
+            <div id="filters-labels-section">
+                <h1>filters and labels</h1>
+                <div id="filters-labels-main">tasks wil go here</div>
             </div>
 
         </main>
