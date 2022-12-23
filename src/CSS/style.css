@@ -382,13 +382,22 @@ button:focus {
 }
 
 
-
-.main-content > div {
-    height: 100vh;
+.main-content{
+    
     display: flex;
     flex-direction: column;
 }
 
+
+#inbox-section,
+#today-section,
+#upcoming-section,
+#filters-labels-section {
+    min-height: calc(100vh - 53px);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 #inbox-main,
 #today-main,
 #upcoming-main,
@@ -441,6 +450,7 @@ background-color: #EB8E1560;
 
     .shade.is-closed{
         top: 0;
+        right: 0;
         height: 100vh;
         width: 100vw;
         display: block;
