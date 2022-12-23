@@ -3,13 +3,36 @@ html {
     height: 100%;
     font-family: var(--font-family);
     color: #202020;
+    scroll-behavior: smooth;
+
+}
+
+a {
+    color: inherit;
+    text-decoration-line: none;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    padding: 31px 50px 0;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #db4c3f6c;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 :root {
+
     --font-family: -apple-system, system-ui, "Segoe UI", Roboto, Noto, Oxygen-Sans, Ubuntu, Cantrell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .top-bar {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 4;
     background-color: #DB4C3F;
     display: flex;
     justify-content: space-between;
@@ -62,7 +85,6 @@ html {
 
 .search:hover input {
     background-color: white;
-
 }
 
 .search:hover ::placeholder {
@@ -122,6 +144,7 @@ button:focus {
 
 .app-holder {
     display: flex;
+    margin-top: 43px;
 }
 
 .main-content {
@@ -321,38 +344,76 @@ button:focus {
     flex-direction: column;
     padding: 16px;
 }
-.project-form label{
+
+.project-form label {
     margin-bottom: 7px;
 
 }
-.project-form input{
+
+.project-form input {
     margin-bottom: 20px;
     padding: 5px;
     border: 1px solid #c5c5c5;
     border-radius: 5px;
 }
 
-.modal-buttons{
+.modal-buttons {
     display: flex;
     justify-content: flex-end;
     gap: 16px;
 
 }
-.modal-buttons button{
+
+.modal-buttons button {
     padding: 5px 20px;
     border: 0;
     outline: none;
     border-radius: 5px;
 
 }
-.modal-buttons :nth-child(2){
+
+.modal-buttons :nth-child(2) {
     background-color: #F1B7B2;
     color: white;
 }
 
-.modal-buttons :nth-child(1){
+.modal-buttons :nth-child(1) {
     background-color: #E5E5E5;
     color: #34332D;
+}
+
+
+
+.main-content > div {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#inbox-main,
+#today-main,
+#upcoming-main,
+#filters-labels-main {
+    padding: 0px 50px;
+    flex: 1;
+    border-radius: 15px;
+
+}
+
+#inbox-main {
+    background-color: #246fe060;
+}
+
+#today-main{
+background-color: #05852760;
+}
+
+#upcoming-main{
+background-color: #692FC260;
+}
+
+#filters-labels-main{
+background-color: #EB8E1560;
 }
 
 
@@ -366,6 +427,7 @@ button:focus {
     }
 
     .sidebar {
+        width: 230px !important;
         transition: 0.3s;
     }
 

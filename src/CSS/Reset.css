@@ -24,7 +24,10 @@ ul[role='list'],
 ol[role='list'] {
   list-style: none;
 }
-
+ul,li{
+  margin: 0;
+  padding: 0;
+}
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
@@ -41,6 +44,7 @@ body {
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
+
 
 /* Make images easier to work with */
 img,
