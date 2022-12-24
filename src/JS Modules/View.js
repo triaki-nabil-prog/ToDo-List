@@ -10,6 +10,8 @@ let projects = (function () {
     const ULprojectsList = document.querySelector(".project-list");
     //Bind events
     AddGlobalEventListener("click", ".add-new", add);
+    AddGlobalEventListener("click", ".project-delete", remove);//have to create a delete button
+    //event listeners binder function
     function AddGlobalEventListener(type, selector, callback) {
         document.addEventListener(type, (e) => {
             if (e.target.matches(selector)) {
@@ -19,20 +21,38 @@ let projects = (function () {
     }
     //event subscriptions
     pubsub.subscribe('projectsOutput', rendering);
-
-    //update the projects module view
-    function rendering(projects) {
-        console.log(projects);
+    //create the projects list html DOM template  and render it
+    function rendering(project) {
+        // generating the html elements
         const newLi = document.createElement("li");
-        newLi.textContent = projects.name;
+        const name = document.createElement("div");
+        const Button = document.createElement("button");
+        const color = document.createElement("div");
+        //assigning classes 
+        newLi.classList.add("project-item");
+        name.classList.add("project-name");
+        Button.classList.add("project-delete");
+        color.classList.add("item-color");
+        //assigning values
+        name.textContent = project.name;
+        color.style.backgroundColor=project.color;
+        Button.innerHTML=`<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor"
+            d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+    </svg>`;
+        //adding  created elements  to the DOM
         ULprojectsList.appendChild(newLi);
+        newLi.appendChild(color);
+        newLi.appendChild(name);
+        newLi.appendChild(Button);
     }
     // get the value from user input and send it to modal 
     function add() {
         pubsub.publish("projectsInput", { name: Name.value, color: Color.value, favorite: Favorite.value });
     }
+    //remove a project from the list
     function remove() {
-        //remove a project
+
     }
 })();
 

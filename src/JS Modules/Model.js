@@ -25,7 +25,9 @@ let ProjectsObjectsCreation = (function () {
         projectsList.push(projectObject);
         pubsub.publish("projectsOutput", projectObject);
     }
-
+    function removeProject(){
+        //remove project from list
+    }
     // to do tasks projects object factory function
     function toDo(name, description) {
         this.name = name;
