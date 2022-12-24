@@ -1,21 +1,15 @@
 import _ from 'lodash';
 import { pubsub } from './Controller';
-
-
 // projects user input getter from dom and publisher to the Modal 
-
 let projects = (function () {
     let project = [];
-
     //cache DOM
-const Name = document.querySelector(".project-name");
-const Color = document.querySelector(".project-color");
-const Favorite =document.querySelector("#checkbox");
-
+    const Name = document.querySelector(".project-name");
+    const Color = document.querySelector(".project-color");
+    const Favorite = document.querySelector("#checkbox");
+    const ULprojectsList = document.querySelector(".project-list");
     //Bind events
     AddGlobalEventListener("click", ".add-new", add);
-
-
     function AddGlobalEventListener(type, selector, callback) {
         document.addEventListener(type, (e) => {
             if (e.target.matches(selector)) {
@@ -23,21 +17,31 @@ const Favorite =document.querySelector("#checkbox");
             }
         });
     }
+    //event subscriptions
+    pubsub.subscribe('projectsOutput', rendering);
 
-    function rendering() {
-        //update the projects module view
+    //update the projects module view
+    function rendering(projects) {
+        console.log(projects);
+        const newLi = document.createElement("li");
+        newLi.textContent = projects.name;
+        ULprojectsList.appendChild(newLi);
     }
-
+    // get the value from user input and send it to modal 
     function add() {
-        // get the value from user input and send it to modal 
-     pubsub.publish("projects",{name:Name.value, color: Color.value, favorite: Favorite.value});
+        pubsub.publish("projectsInput", { name: Name.value, color: Color.value, favorite: Favorite.value });
     }
-
     function remove() {
         //remove a project
     }
-
 })();
+
+
+
+
+
+
+
 
 let tasks = (function () {
 

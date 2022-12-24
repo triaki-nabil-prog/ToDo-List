@@ -3,7 +3,8 @@
 let pubsub = {
 
     subscriptions: {
-        projects: [],
+        projectsInput: [],
+        projectsOutput:[],
         toDo: [],
     },
 
