@@ -1,35 +1,48 @@
-const project =["work",true];
-const todo=["work","testing"];
+import { pubsub } from './Controller';
 
-const projectList =[];
+let ProjectsObjectsCreation = (function () {
 
-function project (name,favorite){
+    const projectsList = [];
 
-this.name = name;
-this.color = color;
-this.favorite = favorite;
+    // projects object factory function
+    function project(name, color, favorite) {
 
-function newToDo(array){
-    this.todo= toDo(array);
-}
+        this.name = name;
+        this.color = color;
+        this.favorite = favorite;
 
-return {name,color,favorite,newToDo};
-}
+        function newToDo(array) {
+            this.todo = toDo(array);
+        }
 
-function toDo (name,description){
-    this.name = name;
-    this.description = description;
+        return { name, color, favorite, newToDo };
+    }
+
+    // new object creation  function 
+    function GetProject({name, color, favorite}) {
+        let projectObject = new project(name, color, favorite);
+        projectsList.push(projectObject);
+        console.log(projectsList);
+    }
+
+    // subscription to the Controller module's pubsub to get the  user input values from the view modules 
+    pubsub.subscribe("projects", GetProject);
 
 
-    return{name,description};
-}
+
+    
+    // to do tasks projects object factory function
+    function toDo(name, description) {
+        this.name = name;
+        this.description = description;
 
 
-function creatProject(){
-    projectList.push(project(project));
-}
+        return { name, description };
+    }
 
-function addtodoList(){
+})();
 
-}
+export { ProjectsObjectsCreation }
+
+
 

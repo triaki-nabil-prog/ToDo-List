@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { pubsub } from './Controller';
 
+
 // projects user input getter from dom and publisher to the Modal 
 
 let projects = (function () {
@@ -10,8 +11,6 @@ let projects = (function () {
 const Name = document.querySelector(".project-name");
 const Color = document.querySelector(".project-color");
 const Favorite =document.querySelector("#checkbox");
-
-
 
     //Bind events
     AddGlobalEventListener("click", ".add-new", add);
@@ -28,10 +27,12 @@ const Favorite =document.querySelector("#checkbox");
     function rendering() {
         //update the projects module view
     }
+
     function add() {
-        console.log("add new project");
-        //add a new project
+        // get the value from user input and send it to modal 
+     pubsub.publish("projects",{name:Name.value, color: Color.value, favorite: Favorite.value});
     }
+
     function remove() {
         //remove a project
     }
