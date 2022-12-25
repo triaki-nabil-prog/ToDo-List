@@ -2,7 +2,6 @@ import _ from 'lodash';
 import { pubsub } from './Controller';
 // projects user input getter from dom and publisher to the Modal 
 let projects = (function () {
-    let project = [];
     //cache DOM
     const Name = document.querySelector(".project-name");
     const Color = document.querySelector(".project-color");
@@ -10,8 +9,10 @@ let projects = (function () {
     const ULprojectsList = document.querySelector(".project-list");
     //Bind events
     AddGlobalEventListener("click", ".add-new", add);
-    AddGlobalEventListener("click", ".project-delete", remove);//have to create a delete button
+    AddGlobalEventListener("click", ".project-delete", removeProject);//have to create a delete button
     //event listeners binder function
+
+
     function AddGlobalEventListener(type, selector, callback) {
         document.addEventListener(type, (e) => {
             if (e.target.matches(selector)) {
@@ -23,36 +24,41 @@ let projects = (function () {
     pubsub.subscribe('projectsOutput', rendering);
     //create the projects list html DOM template  and render it
     function rendering(project) {
-        // generating the html elements
-        const newLi = document.createElement("li");
-        const name = document.createElement("div");
-        const Button = document.createElement("button");
-        const color = document.createElement("div");
-        //assigning classes 
-        newLi.classList.add("project-item");
-        name.classList.add("project-name");
-        Button.classList.add("project-delete");
-        color.classList.add("item-color");
-        //assigning values
-        name.textContent = project.name;
-        color.style.backgroundColor=project.color;
-        Button.innerHTML=`<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-        <path fill="currentColor"
-            d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
-    </svg>`;
-        //adding  created elements  to the DOM
-        ULprojectsList.appendChild(newLi);
-        newLi.appendChild(color);
-        newLi.appendChild(name);
-        newLi.appendChild(Button);
+        if (Name.value != "") {
+            // generating the html elements
+            const newLi = document.createElement("li");
+            const name = document.createElement("div");
+            const Button = document.createElement("button");
+            const color = document.createElement("div");
+            //assigning classes 
+            newLi.classList.add("project-item");
+            name.classList.add("project-name");
+            Button.classList.add("project-delete");
+            color.classList.add("item-color");
+            //assigning values
+            name.textContent = project.name;
+            color.style.backgroundColor = project.color;
+            //adding  created elements  to the DOM
+            ULprojectsList.appendChild(newLi);
+            newLi.appendChild(color);
+            newLi.appendChild(name);
+            newLi.appendChild(Button);
+        }
+        Name.value = "";
     }
     // get the value from user input and send it to modal 
     function add() {
         pubsub.publish("projectsInput", { name: Name.value, color: Color.value, favorite: Favorite.value });
     }
     //remove a project from the list
-    function remove() {
-
+    function removeProject(e) {
+        // remove from the DOM
+        e.target.parentElement.style.opacity = 0;
+        setTimeout(() => { e.target.parentElement.remove() }, 500);
+        // publish removed element index
+        let Li = e.target.parentElement;
+        const index = [...ULprojectsList.children].indexOf(Li);
+        console.log(index);
     }
 })();
 
@@ -114,12 +120,17 @@ let displayControl = (function () {
     var modal = document.getElementById("myModal");
     var modalbtn = document.getElementById("myBtn");
     var span = document.getElementsByClassName("cancel-new")[0];
+    var spanAdd = document.getElementsByClassName("add-new")[0];
 
     modalbtn.onclick = function () {
         modal.style.display = "block";
     }
 
     span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    spanAdd.onclick = function () {
         modal.style.display = "none";
     }
 
