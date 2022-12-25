@@ -55,10 +55,10 @@ let projects = (function () {
         // remove from the DOM
         e.target.parentElement.style.opacity = 0;
         setTimeout(() => { e.target.parentElement.remove() }, 500);
-        // publish removed element index
+        // publish removed element index's
         let Li = e.target.parentElement;
         const index = [...ULprojectsList.children].indexOf(Li);
-        console.log(index);
+        pubsub.publish("ProjectIndex", index);
     }
 })();
 

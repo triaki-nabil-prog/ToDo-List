@@ -5,6 +5,7 @@ let pubsub = {
     subscriptions: {
         projectsInput: [],
         projectsOutput:[],
+        ProjectIndex:[],
         toDo: [],
     },
 

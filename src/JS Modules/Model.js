@@ -19,14 +19,17 @@ let ProjectsObjectsCreation = (function () {
     }
     // subscription to the Controller module's pubsub to get the  user input values from the view modules 
     pubsub.subscribe("projectsInput", GetProject);
+    pubsub.subscribe("ProjectIndex",removeProject);
     // new object creation  function 
     function GetProject({ name, color, favorite }) {
         let projectObject = new project(name, color, favorite);
         projectsList.push(projectObject);
         pubsub.publish("projectsOutput", projectObject);
     }
-    function removeProject(){
-        //remove project from list
+    //remove project object from list
+    function removeProject(index){
+        projectsList.splice(index,1);
+        console.log(projectsList);
     }
     // to do tasks projects object factory function
     function toDo(name, description) {
