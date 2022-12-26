@@ -202,7 +202,7 @@ button:focus {
 .upcoming,
 .filters-labels,
 .projects,
-.project-item {
+.project-item>a {
     display: flex;
     align-items: center;
     padding: 5px;
@@ -214,7 +214,7 @@ button:focus {
 .upcoming:hover,
 .filters-labels:hover,
 .projects:hover,
-.project-item:hover {
+.project-item>a:hover {
     background-color: #EEEEEE;
 
 }
@@ -439,20 +439,14 @@ input:checked+.slider:before {
 }
 
 
-#inbox-section,
-#today-section,
-#upcoming-section,
-#filters-labels-section {
+.main-content > div{
     min-height: calc(100vh - 53px);
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-#inbox-main,
-#today-main,
-#upcoming-main,
-#filters-labels-main {
+.main-content .taskList{
     padding: 0px 50px;
     margin-left: 10px;
     margin-right: 10px;

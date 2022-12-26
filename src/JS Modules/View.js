@@ -30,6 +30,7 @@ let projects = (function () {
             const name = document.createElement("div");
             const Button = document.createElement("button");
             const color = document.createElement("div");
+            const navigation = document.createElement("a")
             //assigning classes 
             newLi.classList.add("project-item");
             name.classList.add("project-name");
@@ -38,11 +39,29 @@ let projects = (function () {
             //assigning values
             name.textContent = project.name;
             color.style.backgroundColor = project.color;
+            navigation.setAttribute("href", `#${project.name}`);
             //adding  created elements  to the DOM
             ULprojectsList.appendChild(newLi);
-            newLi.appendChild(color);
-            newLi.appendChild(name);
-            newLi.appendChild(Button);
+            newLi.appendChild(navigation);
+            navigation.appendChild(color);
+            navigation.appendChild(name);
+            navigation.appendChild(Button);
+            // creating project task display
+            const mainContent=document.querySelector(".main-content");
+            // generating the html elements
+            const projectTasks = document.createElement("div");
+            const TasksList = document.createElement("div");
+            const sectiontitle =document.createElement("h1");
+            //assigning classes 
+            projectTasks.setAttribute('id',project.name);
+            TasksList.classList.add("taskList");
+            TasksList.style.backgroundColor=project.color;
+            TasksList.textContent="tasks will go here";
+            sectiontitle.textContent=project.name;
+            //adding  created elements  to the DOM
+            mainContent.appendChild(projectTasks);
+            projectTasks.appendChild(sectiontitle);
+            projectTasks.appendChild(TasksList);
         }
         Name.value = "";
     }
@@ -60,7 +79,6 @@ let projects = (function () {
         const index = [...ULprojectsList.children].indexOf(Li);
         pubsub.publish("ProjectIndex", index);
     }
-
 })();
 
 
