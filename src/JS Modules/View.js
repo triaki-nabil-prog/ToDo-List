@@ -72,10 +72,13 @@ let projects = (function () {
     //remove a project from the list
     function removeProject(e) {
         // remove from the DOM
-        e.target.parentElement.style.opacity = 0;
-        setTimeout(() => { e.target.parentElement.remove() }, 500);
+        let parent =e.target.parentElement;
+        parent.parentElement.style.opacity = 0;
+        setTimeout(() => { 
+            parent.parentElement.remove();
+        }, 500);
         // publish removed element index's
-        let Li = e.target.parentElement;
+        let Li = parent.parentElement;
         const index = [...ULprojectsList.children].indexOf(Li);
         pubsub.publish("ProjectIndex", index);
     }
