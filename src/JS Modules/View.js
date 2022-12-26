@@ -47,17 +47,16 @@ let projects = (function () {
             navigation.appendChild(name);
             navigation.appendChild(Button);
             // creating project task display
-            const mainContent=document.querySelector(".main-content");
+            const mainContent = document.querySelector(".main-content");
             // generating the html elements
             const projectTasks = document.createElement("div");
             const TasksList = document.createElement("div");
-            const sectiontitle =document.createElement("h1");
+            const sectiontitle = document.createElement("h1");
             //assigning classes 
-            projectTasks.setAttribute('id',project.name);
+            projectTasks.setAttribute('id', project.name);
             TasksList.classList.add("taskList");
-            TasksList.style.backgroundColor=project.color;
-            TasksList.textContent="tasks will go here";
-            sectiontitle.textContent=project.name;
+            TasksList.style.backgroundColor = project.color;
+            sectiontitle.textContent = project.name;
             //adding  created elements  to the DOM
             mainContent.appendChild(projectTasks);
             projectTasks.appendChild(sectiontitle);
@@ -72,9 +71,9 @@ let projects = (function () {
     //remove a project from the list
     function removeProject(e) {
         // remove from the DOM
-        let parent =e.target.parentElement;
+        let parent = e.target.parentElement;
         parent.parentElement.style.opacity = 0;
-        setTimeout(() => { 
+        setTimeout(() => {
             parent.parentElement.remove();
         }, 500);
         // publish removed element index's
@@ -92,18 +91,73 @@ let projects = (function () {
 
 
 let tasks = (function () {
+    //cache DOM
 
-    function rendering() {
-        //update the task module view
+    //event subscriptions
+    pubsub.subscribe('projectsOutput', rendering);
+    //update the task module view
+    function rendering(project) {
+        // getting the currently created project task display area
+        const projectTask = document.querySelector(`#${project.name} .taskList`);
+        // generating the html elements
+        const TaskModal = document.createElement('div');
+        const TaskName = document.createElement('input');
+        const TaskDescription = document.createElement('input');
+        const TaskDueDate = document.createElement('input');
+        const addButton = document.createElement('button');
+        const buttons = document.createElement('div');
+        const cancelButton = document.createElement('button');
+        const ModalButton = document.createElement('button');
+        //assigning classes 
+        TaskModal.classList.add("Task-modal");
+        TaskName.classList.add("task-name");
+        TaskDescription.classList.add("task-description");
+        TaskDueDate.classList.add("task-due-date");
+        buttons.classList.add("task-modal-buttons");
+        addButton.classList.add("add-task");
+        cancelButton.classList.add("cancel-task");
+        ModalButton.classList.add("open-modal");
+        //adding values 
+        ModalButton.textContent = "+ Add task";
+        addButton.textContent = "Add";
+        cancelButton.textContent = "Cancel";
+        TaskName.setAttribute("type", "text");
+        TaskName.placeholder = "Task name";
+        TaskDescription.placeholder = "Description";
+        TaskDueDate.setAttribute("type", "Date");
+
+        //adding  created elements  to the DOM
+        projectTask.appendChild(ModalButton);
+        ModalButton.appendChild(TaskModal);
+        TaskModal.appendChild(TaskName);
+        TaskModal.appendChild(TaskDescription);
+        TaskModal.appendChild(TaskDueDate);
+        TaskModal.appendChild(buttons);
+        buttons.appendChild(cancelButton);
+        buttons.appendChild(addButton);
+        //task modal event controls
+        //open task modal
+        ModalButton.addEventListener('click', (e) => {
+            if (e.target.matches(".open-modal")) {
+                console.log(e.target);
+                TaskModal.style.display = "block";
+            }
+            e.stopPropagation()
+        });
+        //close task modal
+        cancelButton.addEventListener('click', (e) => {
+            console.log(e.target);
+            TaskModal.style.display = "none";
+        });
     }
+
     function add() {
         //add a new task
     }
+
     function remove() {
         //remove a task
-
     }
-
 })();
 
 
@@ -139,28 +193,32 @@ let displayControl = (function () {
         shade.classList.toggle('is-closed');
     });
 
-    var modal = document.getElementById("myModal");
-    var modalbtn = document.getElementById("myBtn");
+    //modals closing and opening
+    //projects modal
+    var projectModal = document.getElementById("myModal");
+    var projectModalbtn = document.getElementById("myBtn");
     var span = document.getElementsByClassName("cancel-new")[0];
     var spanAdd = document.getElementsByClassName("add-new")[0];
 
-    modalbtn.onclick = function () {
-        modal.style.display = "block";
+    projectModalbtn.onclick = function () {
+        projectModal.style.display = "block";
     }
 
     span.onclick = function () {
-        modal.style.display = "none";
+        projectModal.style.display = "none";
     }
 
     spanAdd.onclick = function () {
-        modal.style.display = "none";
+        projectModal.style.display = "none";
     }
 
     window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == projectModal) {
+            projectModal.style.display = "none";
         }
     }
+
+
 
 })();
 
@@ -248,14 +306,14 @@ let resizeHandler = (function () {
 
 let loadScreenview = (function () {
 
-window.addEventListener("load", function () {
-        this.setTimeout(()=>{
+    window.addEventListener("load", function () {
+        this.setTimeout(() => {
             console.log("loaded");
             document.getElementById("load-container").style.display = "none";
-        },2500);
+        }, 2500);
     });
 
-    })();
+})();
 
 
 

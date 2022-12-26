@@ -30,11 +30,12 @@ let ProjectsObjectsCreation = (function () {
 
     }
     // to do tasks projects object factory function
-    function toDo(name, description) {
+    function toDo(name, description,dueDate) {
         this.name = name;
         this.description = description;
+        this.dueDate = dueDate;
         // exposed properties inside the module 
-        return { name, description };
+        return { name, description, dueDate};
     }
     function addTask(){
         // add a new task to the specified project objects tasks array

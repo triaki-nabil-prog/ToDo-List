@@ -358,14 +358,16 @@ button:focus {
     border-radius: 5px;
 }
 
-.modal-buttons {
+.modal-buttons,
+.task-modal-buttons{
     display: flex;
     justify-content: flex-end;
     gap: 16px;
 
 }
 
-.modal-buttons button {
+.modal-buttons button,
+.task-modal-buttons button {
     padding: 5px 20px;
     border: 0;
     outline: none;
@@ -373,12 +375,14 @@ button:focus {
 
 }
 
-.modal-buttons :nth-child(2) {
+.modal-buttons :nth-child(2),
+.task-modal-buttons :nth-child(2){
     background-color: #F1B7B2;
     color: white;
 }
 
-.modal-buttons :nth-child(1) {
+.modal-buttons :nth-child(1),
+.task-modal-buttons :nth-child(1){
     background-color: #E5E5E5;
     color: #34332D;
 }
@@ -580,6 +584,63 @@ input:checked+.slider:before {
     }
 }
 
+.open-modal{
+    position: relative;
+    width: 100%;
+    text-align: start;
+    border: 0;
+    background-color: white;
+    margin-top: 20px;
+    color: #34332D;
+    font-weight: bold;
+}
+
+.open-modal:hover{
+    background-color:#ccc;
+    color: #DB4C3F;
+}
+
+.Task-modal{
+    position: absolute;
+    background-color: white;
+    top: 0;
+    right: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    font-weight: normal;
+    font-size: 1rem;
+    color: #5f5f5f;
+}
+
+.task-modal-buttons{
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+.task-name::placeholder,
+.task-description::placeholder{ 
+color: #5f5f5f;
+font-weight: 400;
+font-size: 0.9rem;
+opacity: 0.7;
+}
+.task-name,
+.task-description{
+    margin-top: 10px;
+    min-width: 100%;
+    border: 0;
+border-bottom: 1px solid #5f5f5f86;
+}
+.task-due-date{
+    width: fit-content;
+    margin-top: 10px;
+    color:#5f5f5f86 ;
+    border: 0;
+    border-bottom: 1px solid #5f5f5f86;
+}
+
+
 
 
 
@@ -594,7 +655,7 @@ input:checked+.slider:before {
         width: 230px !important;
         transition: 0.3s;
         height: 100vh;
-        z-index: 1;
+        z-index: 2;
     }
 
     .shade.is-closed {
@@ -604,6 +665,7 @@ input:checked+.slider:before {
         width: 100vw;
         display: block;
         background-color: #34332d91;
+        z-index: 1;
     }
 
 
