@@ -534,6 +534,7 @@ input:checked+.slider:before {
 }
 
 .tracking-in-contract {
+    white-space: nowrap;
     padding-bottom: 30px;
     font-size: 3rem;
     font-weight: bolder;

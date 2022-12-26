@@ -227,14 +227,11 @@ let resizeHandler = (function () {
 
 let loadScreenview = (function () {
 
-
-    window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
         this.setTimeout(()=>{
             console.log("loaded");
             document.getElementById("load-container").style.display = "none";
         },2500);
-
-        
     });
 
     })();
