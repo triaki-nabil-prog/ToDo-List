@@ -24,7 +24,7 @@ let projects = (function () {
     pubsub.subscribe('projectsOutput', rendering);
     //create the projects list html DOM template  and render it
     function rendering(project) {
-        if (Name.value != "") {
+        if (Name.value != "" ||project.name != "") {
             // generating the html elements
             const newLi = document.createElement("li");
             const name = document.createElement("div");
@@ -60,6 +60,7 @@ let projects = (function () {
         const index = [...ULprojectsList.children].indexOf(Li);
         pubsub.publish("ProjectIndex", index);
     }
+    
 })();
 
 
