@@ -510,6 +510,83 @@ input:checked+.slider:before {
     border: 0;
 }
 
+#load-container {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    background-color: #e7918a;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#loader {
+    align-self: center;
+    border: 8px solid #f3f3f3;
+    /* Light grey */
+    border-top: 8px solid #dd4739;
+    /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+.tracking-in-contract {
+    padding-bottom: 30px;
+    font-size: 3rem;
+    font-weight: bolder;
+    text-align: center;
+    -webkit-animation: tracking-in-contract 0.8s cubic-bezier(0.680, -0.550, 0.265, 1.550) both;
+    animation: tracking-in-contract 0.8s cubic-bezier(0.680, -0.550, 0.265, 1.550) both;
+}
+
+
+@-webkit-keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 
 
 @media only screen and (max-width: 800px) {

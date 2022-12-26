@@ -24,7 +24,7 @@ let projects = (function () {
     pubsub.subscribe('projectsOutput', rendering);
     //create the projects list html DOM template  and render it
     function rendering(project) {
-        if (Name.value != "" ||project.name != "") {
+        if (Name.value != "" || project.name != "") {
             // generating the html elements
             const newLi = document.createElement("li");
             const name = document.createElement("div");
@@ -60,7 +60,7 @@ let projects = (function () {
         const index = [...ULprojectsList.children].indexOf(Li);
         pubsub.publish("ProjectIndex", index);
     }
-    
+
 })();
 
 
@@ -203,7 +203,6 @@ let resizeHandler = (function () {
 
             search.style.width = text + "px";
         }, 100);
-        console.log('tracking started');
     });
 
     $(window).on('mousemove', null, null, _.debounce((event) => {
@@ -221,12 +220,25 @@ let resizeHandler = (function () {
     $(window).on('mouseup', null, null, (event) => {
         if (resizeData.tracking) {
             resizeData.tracking = false;
-
-            console.log('tracking stopped');
         }
     });
 
 })();
 
+let loadScreenview = (function () {
 
-export { displayControl, resizeHandler };
+
+    window.addEventListener("DOMContentLoaded", function () {
+        this.setTimeout(()=>{
+            console.log("loaded");
+            document.getElementById("load-container").style.display = "none";
+        },2500);
+
+        
+    });
+
+    })();
+
+
+
+export { displayControl, resizeHandler, loadScreenview };
