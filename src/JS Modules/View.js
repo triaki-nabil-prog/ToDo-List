@@ -103,8 +103,6 @@ let projects = (function () {
 
 // task manager module
 let tasks = (function () {
-    //cache DOM
-
     //event subscriptions
     pubsub.subscribe('projectsOutput', renderingModal);
     pubsub.subscribe('TaskOutput', renderingTasks);
@@ -167,19 +165,46 @@ let tasks = (function () {
         });
         addButton.addEventListener('click', (e) => {
             TaskModal.style.display = "none";
-            add(TaskName.value,TaskDescription.value,TaskDueDate.value, project);
+            add(TaskName.value, TaskDescription.value, TaskDueDate.value, project);
             TaskName.value = "";
             TaskDescription.value = "";
             TaskDueDate.value = "";
         });
     }
     // render the tasks display on the dom
-    function renderingTasks(project){
-const section = document.querySelector(`${project.name}`);
-
+    function renderingTasks(project) {
+        console.log(project);
+        //cash Dom
+        const section = document.querySelector(`#${project.name} .taskList`);
+        //create task display dom elements
+        const taskWrap = document.createElement('div');
+        const contentWrap = document.createElement('div');
+        const Name = document.createElement('div');
+        const description = document.createElement('div');
+        const date = document.createElement('div');
+        const remove = document.createElement('button');
+        //assigning classes 
+        taskWrap.classList.add("task-wrap");
+        contentWrap.classList.add("task-content-wrap");
+        Name.classList.add("view-task-name");
+        description.classList.add("view-task-description");
+        date.classList.add("due-date");
+        remove.classList.add("remove-task");
+        //adding  display values 
+        let index = project.tasks.length-1;
+        Name.textContent = project.tasks[index].name;
+        description.textContent = project.tasks[index].description;
+        date.textContent = project.tasks[index].dueDate;
+        //adding  created elements  to the DOM
+        taskWrap.appendChild(contentWrap);
+        taskWrap.appendChild(remove);
+        contentWrap.appendChild(Name);
+        contentWrap.appendChild(description);
+        contentWrap.appendChild(date);
+        section.insertBefore(taskWrap, section.firstChild);
     }
     //add a new task
-    function add(name,Description,duedate,project) {
+    function add(name, Description, duedate, project) {
         pubsub.publish("taskInput", { name, Description, duedate, project });
         console.log("Adding");
 
