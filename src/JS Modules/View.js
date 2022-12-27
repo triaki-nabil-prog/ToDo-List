@@ -68,8 +68,8 @@ let projects = (function () {
     // get the value from user input and send it to modal 
     function add() {
         // testing if the project input by user already exist 
-        let test = false;
-        for (let i = 1; i < ProjectListData.length; i++) {
+        let test = true;
+        for (let i = 0; i < ProjectListData.length; i++) {
             if (ProjectListData[i].name == Name.value) {
                 alert("Project Already exist");
                 test = false;
