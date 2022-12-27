@@ -3,6 +3,7 @@ import { pubsub } from './Controller';
 let ProjectsObjectsCreation = (function () {
     // stored list of project objects 
     const projectsList = [];
+    pubsub.publish("projectsList", projectsList);
 
     // projects object factory function
     const project = function (name, color, favorite) {
@@ -22,6 +23,7 @@ let ProjectsObjectsCreation = (function () {
         projectObject.tasks.push(new toDo("test","test"));
         projectObject.tasks.push(new toDo("test2","test2")) ;
         projectsList.push(projectObject);
+        pubsub.publish("projectsList", projectsList);
         pubsub.publish("projectsOutput", projectObject);
     }
     //remove project object from list

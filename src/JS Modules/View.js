@@ -2,17 +2,18 @@ import _ from 'lodash';
 import { pubsub } from './Controller';
 // projects user input getter from dom and publisher to the Modal 
 let projects = (function () {
+    //Project Data
+    let ProjectListData = [];
     //cache DOM
     const Name = document.querySelector(".project-name");
     const Color = document.querySelector(".project-color");
     const Favorite = document.querySelector("#checkbox");
     const ULprojectsList = document.querySelector(".project-list");
+    const mainContent = document.querySelector(".main-content");
     //Bind events
     AddGlobalEventListener("click", ".add-new", add);
     AddGlobalEventListener("click", ".project-delete", removeProject);//have to create a delete button
     //event listeners binder function
-
-
     function AddGlobalEventListener(type, selector, callback) {
         document.addEventListener(type, (e) => {
             if (e.target.matches(selector)) {
@@ -22,6 +23,7 @@ let projects = (function () {
     }
     //event subscriptions
     pubsub.subscribe('projectsOutput', rendering);
+    pubsub.subscribe('projectsList', getProjectList);
     //create the projects list html DOM template  and render it
     function rendering(project) {
         if (Name.value != "" || project.name != "") {
@@ -46,8 +48,7 @@ let projects = (function () {
             navigation.appendChild(color);
             navigation.appendChild(name);
             navigation.appendChild(Button);
-            // creating project task display
-            const mainContent = document.querySelector(".main-content");
+            // creating project task display 
             // generating the html elements
             const projectTasks = document.createElement("div");
             const TasksList = document.createElement("div");
@@ -66,20 +67,36 @@ let projects = (function () {
     }
     // get the value from user input and send it to modal 
     function add() {
-        pubsub.publish("projectsInput", { name: Name.value, color: Color.value, favorite: Favorite.value });
-    }
+        // testing if the project input by user already exist 
+        let test = false;
+        for (let i = 1; i < ProjectListData.length; i++) {
+            if (ProjectListData[i].name == Name.value) {
+                alert("Project Already exist");
+                test = false;
+                break;
+            }
+            else {test = true;}
+        }
+        if (test) {pubsub.publish("projectsInput", { name: Name.value, color: Color.value, favorite: Favorite.value });}}
     //remove a project from the list
     function removeProject(e) {
         // remove from the DOM
+        let id = e.target.previousSibling.textContent;
         let parent = e.target.parentElement;
         parent.parentElement.style.opacity = 0;
         setTimeout(() => {
             parent.parentElement.remove();
         }, 500);
+        const projectDomSection = document.querySelector(`#${id}`);
+        projectDomSection.remove();
         // publish removed element index's
         let Li = parent.parentElement;
         const index = [...ULprojectsList.children].indexOf(Li);
         pubsub.publish("ProjectIndex", index);
+    }
+    // testing if project already exist and alert user if yes
+    function getProjectList(projectList) {
+        ProjectListData = projectList;
     }
 })();
 

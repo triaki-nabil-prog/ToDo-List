@@ -6,6 +6,8 @@ let pubsub = {
         projectsInput: [],
         projectsOutput:[],
         ProjectIndex:[],
+        projectsList:[],
+
         toDo: [],
     },
 
