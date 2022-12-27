@@ -186,6 +186,7 @@ let tasks = (function () {
     function renderingTasks(project) {
         //cash Dom
         const section = document.querySelector(`#${project.name} .taskList`);
+        const Alltasks = document.querySelector("#inbox-main");
         //create task display dom elements
         const taskWrap = document.createElement('div');
         const contentWrap = document.createElement('div');
@@ -211,6 +212,10 @@ let tasks = (function () {
         contentWrap.appendChild(description);
         contentWrap.appendChild(date);
         section.insertBefore(taskWrap, section.firstChild);
+        // All tasks section display 
+        let task = taskWrap.cloneNode(true);
+        Alltasks.appendChild(task);
+        
     }
     //add a new task
     function add(name, Description, duedate, project) {
@@ -245,6 +250,8 @@ let tasks = (function () {
     }
 
 })();
+
+
 
 
 let displayControl = (function () {
