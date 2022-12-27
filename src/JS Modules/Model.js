@@ -3,14 +3,14 @@ import { pubsub } from './Controller';
 let ProjectsObjectsCreation = (function () {
     // stored list of project objects 
     const projectsList = [];
-    const tasks = [];
+    let projectIndex =0 ;
     pubsub.publish("projectsList", projectsList);
     // projects object factory function
     const project = function (name, color, favorite) {
         this.name = name;
         this.color = color;
         this.favorite = favorite;
-        this.tasks = tasks;
+        let tasks = [];
         // exposed properties inside the module 
         return { name, color, favorite, tasks };
     }
@@ -18,6 +18,8 @@ let ProjectsObjectsCreation = (function () {
     pubsub.subscribe("projectsInput", GetProject);
     pubsub.subscribe("ProjectIndex", removeProject);
     pubsub.subscribe("taskInput", GetTask);
+    pubsub.subscribe("taskIndex", removeTask);
+    pubsub.subscribe("taskprojectIndex", getprojectindex);
     // new object creation  function 
     function GetProject({ name, color, favorite }) {
         let projectObject = new project(name, color, favorite);
@@ -37,11 +39,19 @@ let ProjectsObjectsCreation = (function () {
         // exposed properties inside the module 
         return { name, description, dueDate };
     }
+    // add a new task to the specified project objects tasks array
     function GetTask({ name, Description, duedate, project }) {
-        project.tasks.push(new toDo(name, Description, duedate));
+        project.tasks.unshift(new toDo(name, Description, duedate));
         pubsub.publish("TaskOutput", project);
-        // add a new task to the specified project objects tasks array
     }
+    //remove task object from projects tasks array
+    function removeTask(index){
+        projectsList[projectIndex].tasks.splice(index, 1);
+    }
+    function getprojectindex(index){
+        projectIndex=index;
+    }
+
     // initial projects
     GetProject({ name: "Personal", color: "#696969", favorite: 'on' });
     GetProject({ name: "Work", color: "#2a9d8f", favorite: 'on' });

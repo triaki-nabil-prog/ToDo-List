@@ -103,6 +103,17 @@ let projects = (function () {
 
 // task manager module
 let tasks = (function () {
+
+    //Bind events
+    AddGlobalEventListener("click", ".remove-task", removeTask);//have to create a delete button
+    //event listeners binder function
+    function AddGlobalEventListener(type, selector, callback) {
+        document.addEventListener(type, (e) => {
+            if (e.target.matches(selector)) {
+                callback(e);
+            }
+        });
+    }
     //event subscriptions
     pubsub.subscribe('projectsOutput', renderingModal);
     pubsub.subscribe('TaskOutput', renderingTasks);
@@ -173,7 +184,6 @@ let tasks = (function () {
     }
     // render the tasks display on the dom
     function renderingTasks(project) {
-        console.log(project);
         //cash Dom
         const section = document.querySelector(`#${project.name} .taskList`);
         //create task display dom elements
@@ -191,10 +201,9 @@ let tasks = (function () {
         date.classList.add("due-date");
         remove.classList.add("remove-task");
         //adding  display values 
-        let index = project.tasks.length-1;
-        Name.textContent = project.tasks[index].name;
-        description.textContent = project.tasks[index].description;
-        date.textContent = project.tasks[index].dueDate;
+        Name.textContent = project.tasks[0].name;
+        description.textContent = project.tasks[0].description;
+        date.textContent = project.tasks[0].dueDate;
         //adding  created elements  to the DOM
         taskWrap.appendChild(contentWrap);
         taskWrap.appendChild(remove);
@@ -206,13 +215,35 @@ let tasks = (function () {
     //add a new task
     function add(name, Description, duedate, project) {
         pubsub.publish("taskInput", { name, Description, duedate, project });
-        console.log("Adding");
 
     }
     //remove a task
-    function removeTask() {
-        console.log("removing");
+    function removeTask(e) {
+        let projectsection = e.target.parentElement.parentElement.parentElement;
+        const sectionlist = document.querySelector(".main-content");
+        
+        const projectIndex = [...sectionlist.children].indexOf(projectsection);
+        let shiftPindex = projectIndex - 5;
+        pubsub.publish("taskprojectIndex", shiftPindex);
+        
+        let id = e.target.parentElement.parentElement.parentElement.id;
+        const taskList = document.querySelector(`#${id} .taskList`);
+        console.log(taskList);
+        // remove from the DOM
+        let parent = e.target.parentElement;
+        parent.style.opacity = 0;
+        setTimeout(() => {
+            parent.remove();
+        }, 500);
+        // publish removed element index's
+        const index = [...taskList.children].indexOf(parent);
+        pubsub.publish("taskIndex", index);
     }
+    // testing if project already exist and alert user if yes
+    function getProjectList(projectList) {
+        ProjectListData = projectList;
+    }
+
 })();
 
 
@@ -363,7 +394,6 @@ let loadScreenview = (function () {
 
     window.addEventListener("load", function () {
         this.setTimeout(() => {
-            console.log("loaded");
             document.getElementById("load-container").style.display = "none";
         }, 2500);
     });

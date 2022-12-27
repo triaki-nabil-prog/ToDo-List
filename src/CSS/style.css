@@ -359,7 +359,7 @@ button:focus {
 }
 
 .modal-buttons,
-.task-modal-buttons{
+.task-modal-buttons {
     display: flex;
     justify-content: flex-end;
     gap: 16px;
@@ -376,13 +376,13 @@ button:focus {
 }
 
 .modal-buttons :nth-child(2),
-.task-modal-buttons :nth-child(2){
+.task-modal-buttons :nth-child(2) {
     background-color: #F1B7B2;
     color: white;
 }
 
 .modal-buttons :nth-child(1),
-.task-modal-buttons :nth-child(1){
+.task-modal-buttons :nth-child(1) {
     background-color: #E5E5E5;
     color: #34332D;
 }
@@ -443,14 +443,14 @@ input:checked+.slider:before {
 }
 
 
-.main-content > div{
+.main-content>div {
     min-height: calc(100vh - 53px);
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-.main-content .taskList{
+.main-content .taskList {
     padding: 0px 50px;
     margin-left: 10px;
     margin-right: 10px;
@@ -584,7 +584,7 @@ input:checked+.slider:before {
     }
 }
 
-.open-modal{
+.open-modal {
     position: relative;
     width: 100%;
     text-align: start;
@@ -595,12 +595,12 @@ input:checked+.slider:before {
     font-weight: bold;
 }
 
-.open-modal:hover{
-    background-color:#ccc;
+.open-modal:hover {
+    background-color: #ccc;
     color: #DB4C3F;
 }
 
-.Task-modal{
+.Task-modal {
     position: absolute;
     background-color: white;
     top: 0;
@@ -614,30 +614,71 @@ input:checked+.slider:before {
     color: #5f5f5f;
 }
 
-.task-modal-buttons{
+.task-modal-buttons {
     font-size: 0.8rem;
     margin-top: 10px;
 }
+
 .task-name::placeholder,
-.task-description::placeholder{ 
-color: #5f5f5f;
-font-weight: 400;
-font-size: 0.9rem;
-opacity: 0.7;
+.task-description::placeholder {
+    color: #5f5f5f;
+    font-weight: 400;
+    font-size: 0.9rem;
+    opacity: 0.7;
 }
+
 .task-name,
-.task-description{
+.task-description {
     margin-top: 10px;
     min-width: 100%;
     border: 0;
-border-bottom: 1px solid #5f5f5f86;
+    border-bottom: 1px solid #5f5f5f86;
 }
-.task-due-date{
+
+.task-due-date {
     width: 120px;
     margin-top: 10px;
-    color:#5f5f5f86 ;
+    color: #5f5f5f86;
     border: 0;
     border-bottom: 1px solid #5f5f5f86;
+}
+
+.task-wrap {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.task-content-wrap {
+    flex: 1;
+    transition: 0.2s linear;
+}
+
+.view-task-name {
+    font-weight: bold;
+    border-bottom: 1px solid #5f5f5f86;
+}
+
+.view-task-description {
+    border-bottom: 1px solid #5f5f5f86;
+}
+
+.due-date {
+    border-bottom: 1px solid #5f5f5f86;
+}
+.remove-task{
+    margin: 20px;
+    height: 24px;
+    width: 24px;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23696969' d='M9 3V4H4V6H5V19A2 2 0 0 0 7 21H17A2 2 0 0 0 19 19V6H20V4H15V3H9M7 6H17V19H7V6M9 8V17H11V8H9M13 8V17H15V8H13Z' /%3E%3C/svg%3E");
+    border: 0;
+}
+.taskList{
+    overflow-y: scroll;
 }
 
 

@@ -10,6 +10,8 @@ let pubsub = {
 
         taskInput:[],
         TaskOutput:[],
+        taskIndex:[],
+        taskprojectIndex:[],
     },
 
     subscribe: function (subscriptionName, fn) {
