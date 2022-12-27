@@ -8,7 +8,8 @@ let pubsub = {
         ProjectIndex:[],
         projectsList:[],
 
-        toDo: [],
+        taskInput:[],
+        TaskOutput:[],
     },
 
     subscribe: function (subscriptionName, fn) {

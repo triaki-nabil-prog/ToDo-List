@@ -75,9 +75,10 @@ let projects = (function () {
                 test = false;
                 break;
             }
-            else {test = true;}
+            else { test = true; }
         }
-        if (test) {pubsub.publish("projectsInput", { name: Name.value, color: Color.value, favorite: Favorite.value });}}
+        if (test) { pubsub.publish("projectsInput", { name: Name.value, color: Color.value, favorite: Favorite.value }); }
+    }
     //remove a project from the list
     function removeProject(e) {
         // remove from the DOM
@@ -100,20 +101,16 @@ let projects = (function () {
     }
 })();
 
-
-
-
-
-
-
-
+// task manager module
 let tasks = (function () {
     //cache DOM
 
     //event subscriptions
-    pubsub.subscribe('projectsOutput', rendering);
+    pubsub.subscribe('projectsOutput', renderingModal);
+    pubsub.subscribe('TaskOutput', renderingTasks);
+
     //update the task module view
-    function rendering(project) {
+    function renderingModal(project) {
         // getting the currently created project task display area
         const projectTask = document.querySelector(`#${project.name} .taskList`);
         // generating the html elements
@@ -156,24 +153,40 @@ let tasks = (function () {
         //open task modal
         ModalButton.addEventListener('click', (e) => {
             if (e.target.matches(".open-modal")) {
-                console.log(e.target);
                 TaskModal.style.display = "block";
             }
             e.stopPropagation()
         });
         //close task modal
         cancelButton.addEventListener('click', (e) => {
-            console.log(e.target);
             TaskModal.style.display = "none";
+            removeTask();
+            TaskName.value = "";
+            TaskDescription.value = "";
+            TaskDueDate.value = "";
+        });
+        addButton.addEventListener('click', (e) => {
+            TaskModal.style.display = "none";
+            add(TaskName.value,TaskDescription.value,TaskDueDate.value, project);
+            TaskName.value = "";
+            TaskDescription.value = "";
+            TaskDueDate.value = "";
         });
     }
+    // render the tasks display on the dom
+    function renderingTasks(project){
+const section = document.querySelector(`${project.name}`);
 
-    function add() {
-        //add a new task
     }
+    //add a new task
+    function add(name,Description,duedate,project) {
+        pubsub.publish("taskInput", { name, Description, duedate, project });
+        console.log("Adding");
 
-    function remove() {
-        //remove a task
+    }
+    //remove a task
+    function removeTask() {
+        console.log("removing");
     }
 })();
 
